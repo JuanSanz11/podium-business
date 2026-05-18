@@ -4,6 +4,8 @@ Este repositorio contiene la integración completa de una solución de software 
 
 El sistema permite la administración de finanzas personales (ingresos, egresos, deudas y ahorros), generación de reportes automáticos con gráficos interactivos, y cuenta con un sistema de procesamiento de pedidos asíncrono utilizando mensajería distribuida con **RabbitMQ**.
 
+<img width="1203" height="638" alt="Captura de Tela 2026-05-18 às 02 29 13" src="https://github.com/user-attachments/assets/9f5ba657-847a-45d3-a356-22858dae7481" />
+
 ---
 
 ## 📂 Estructura General del Proyecto
