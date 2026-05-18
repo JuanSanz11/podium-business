@@ -26,7 +26,8 @@ Construido bajo una arquitectura limpia y desacoplada en capas (Controladores, S
 *   **Java 17** & **Spring Boot 3.2.5**
 *   **Spring Security & JWT (JSON Web Tokens)**: Implementación de seguridad sin estado (*stateless*) con interceptor y filtro personalizado para autorizar recursos de forma segura.
   
-<img width="464" height="508" alt="Captura de Tela 2026-05-18 às 02 30 25" src="https://github.com/user-attachments/assets/040189a4-07fd-4549-b74f-36b700897015" />
+<img width="1271" height="714" alt="Captura de Tela 2026-05-18 às 02 31 26" src="https://github.com/user-attachments/assets/ca93a996-f6aa-4c9c-b75c-5599cfef79df" />
+
 
 *   **Spring Data JPA / Hibernate**: Persistencia y mapeo objeto-relacional automático hacia la base de datos.
 *   **PostgreSQL**: Base de datos relacional para guardar usuarios, facturas, gastos, deudas y pedidos.
