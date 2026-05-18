@@ -25,6 +25,9 @@ javaecositem/
 Construido bajo una arquitectura limpia y desacoplada en capas (Controladores, Servicios, Repositorios, DTOs y Mappers).
 *   **Java 17** & **Spring Boot 3.2.5**
 *   **Spring Security & JWT (JSON Web Tokens)**: Implementación de seguridad sin estado (*stateless*) con interceptor y filtro personalizado para autorizar recursos de forma segura.
+  
+<img width="464" height="508" alt="Captura de Tela 2026-05-18 às 02 30 25" src="https://github.com/user-attachments/assets/040189a4-07fd-4549-b74f-36b700897015" />
+
 *   **Spring Data JPA / Hibernate**: Persistencia y mapeo objeto-relacional automático hacia la base de datos.
 *   **PostgreSQL**: Base de datos relacional para guardar usuarios, facturas, gastos, deudas y pedidos.
 *   **RabbitMQ**: Middleware de mensajería asíncrona para la publicación y el consumo desacoplado del procesamiento de pedidos en segundo plano.
