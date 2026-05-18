@@ -1,0 +1,113 @@
+<div class="module-wrapper">
+  <div class="header-action">
+    <button mat-icon-button routerLink="/dashboard" color="warn">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>Gestión de Gastos y Ahorros</h2>
+  </div>
+
+  <div class="grid-layout">
+    <!-- Formulario para agregar -->
+    <mat-card class="podium-card form-card">
+      <mat-card-header>
+        <mat-card-title>Registrar Salida de Dinero</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="gastoForm" (ngSubmit)="onSubmit()">
+          
+          <mat-form-field appearance="outline" fullWidth>
+            <mat-label>Descripción</mat-label>
+            <input matInput formControlName="descripcion" placeholder="Ej. Compra de supermercado">
+          </mat-form-field>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Monto ($)</mat-label>
+              <input matInput type="number" formControlName="monto">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Categoría</mat-label>
+              <input matInput formControlName="categoria" placeholder="Ej. Alimentación">
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline" fullWidth>
+            <mat-label>Fecha del Gasto</mat-label>
+            <input matInput type="date" formControlName="fecha">
+          </mat-form-field>
+
+          <div style="margin: 15px 0 25px 0;">
+            <mat-slide-toggle formControlName="ahorroOInversion" color="accent">
+              Clasificar como Ahorro / Inversión
+            </mat-slide-toggle>
+          </div>
+
+          <button mat-flat-button color="warn" type="submit" [disabled]="gastoForm.invalid" class="submit-btn">
+            Guardar Registro
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Tabla de registros -->
+    <mat-card class="podium-card table-card">
+      <mat-card-header>
+        <mat-card-title>Historial de Gastos</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table [dataSource]="gastos" class="mat-elevation-z0 full-width-table">
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID. </th>
+            <td mat-cell *matCellDef="let element"> #{{element.id}} </td>
+          </ng-container>
+
+          <!-- Desc Column -->
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+          </ng-container>
+
+          <!-- Cat Column -->
+          <ng-container matColumnDef="categoria">
+            <th mat-header-cell *matHeaderCellDef> Categoría </th>
+            <td mat-cell *matCellDef="let element">
+              <span class="badge">{{element.categoria || 'General'}}</span>
+            </td>
+          </ng-container>
+
+          <!-- Monto Column -->
+          <ng-container matColumnDef="monto">
+            <th mat-header-cell *matHeaderCellDef> Monto </th>
+            <td mat-cell *matCellDef="let element" [style.color]="element.ahorroOInversion ? '#4caf50' : '#f44336'"> 
+              <strong>${{element.monto | number:'1.2-2'}}</strong> 
+            </td>
+          </ng-container>
+
+          <!-- Tipo Column -->
+          <ng-container matColumnDef="tipo">
+            <th mat-header-cell *matHeaderCellDef> Tipo </th>
+            <td mat-cell *matCellDef="let element"> 
+              <mat-icon *ngIf="element.ahorroOInversion" color="accent" title="Ahorro">savings</mat-icon>
+              <mat-icon *ngIf="!element.ahorroOInversion" color="warn" title="Gasto">money_off</mat-icon>
+            </td>
+          </ng-container>
+
+          <!-- Fecha Column -->
+          <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+            <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+        <div *ngIf="gastos.length === 0 && !loading" class="empty-state">
+          No hay gastos ni ahorros registrados.
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

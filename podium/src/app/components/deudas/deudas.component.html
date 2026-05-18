@@ -1,0 +1,96 @@
+<div class="module-wrapper">
+  <div class="header-action">
+    <button mat-icon-button routerLink="/dashboard" color="warn">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>Gestión de Deudas y Préstamos</h2>
+  </div>
+
+  <div class="grid-layout">
+    <!-- Formulario para agregar -->
+    <mat-card class="podium-card form-card">
+      <mat-card-header>
+        <mat-card-title>Registrar Nueva Deuda</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="deudaForm" (ngSubmit)="onSubmit()">
+          
+          <mat-form-field appearance="outline" fullWidth>
+            <mat-label>Descripción (Qué se debe)</mat-label>
+            <input matInput formControlName="descripcion" placeholder="Ej. Tarjeta de crédito">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fullWidth>
+            <mat-label>Acreedor (A quién se debe)</mat-label>
+            <input matInput formControlName="acreedor" placeholder="Ej. Banco Nacional">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fullWidth>
+            <mat-label>Monto Total ($)</mat-label>
+            <input matInput type="number" formControlName="montoOriginal">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fullWidth>
+            <mat-label>Fecha de Vencimiento</mat-label>
+            <input matInput type="date" formControlName="fechaVencimiento">
+          </mat-form-field>
+
+          <button mat-flat-button color="warn" type="submit" [disabled]="deudaForm.invalid" class="submit-btn">
+            Guardar Deuda
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Tabla de registros -->
+    <mat-card class="podium-card table-card">
+      <mat-card-header>
+        <mat-card-title>Deudas Activas</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table [dataSource]="deudas" class="mat-elevation-z0 full-width-table">
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID. </th>
+            <td mat-cell *matCellDef="let element"> #{{element.id}} </td>
+          </ng-container>
+
+          <!-- Desc Column -->
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+          </ng-container>
+
+          <!-- Acreedor Column -->
+          <ng-container matColumnDef="acreedor">
+            <th mat-header-cell *matHeaderCellDef> Acreedor </th>
+            <td mat-cell *matCellDef="let element">
+              <span class="badge">{{element.acreedor}}</span>
+            </td>
+          </ng-container>
+
+          <!-- Monto Column -->
+          <ng-container matColumnDef="montoOriginal">
+            <th mat-header-cell *matHeaderCellDef> Monto Deuda </th>
+            <td mat-cell *matCellDef="let element" style="color: #f44336;"> 
+              <strong>${{element.montoOriginal | number:'1.2-2'}}</strong> 
+            </td>
+          </ng-container>
+
+          <!-- Fecha Vencimiento Column -->
+          <ng-container matColumnDef="fechaVencimiento">
+            <th mat-header-cell *matHeaderCellDef> Vencimiento </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaVencimiento | date:'mediumDate'}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+        <div *ngIf="deudas.length === 0 && !loading" class="empty-state">
+          ¡Felicidades! No tienes deudas registradas.
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

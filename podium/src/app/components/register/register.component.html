@@ -1,0 +1,32 @@
+<div class="login-container">
+  <mat-card class="podium-card login-card">
+    <mat-card-header>
+      <mat-card-title>Registro de Usuario</mat-card-title>
+      <mat-card-subtitle>Crea tu cuenta en Podium</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" fullWidth>
+          <mat-label>Usuario Nuevo</mat-label>
+          <input matInput formControlName="username" placeholder="johndoe">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fullWidth>
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" formControlName="password">
+        </mat-form-field>
+
+        <div class="error-msg" *ngIf="error">{{ error }}</div>
+
+        <button mat-flat-button color="accent" type="submit" [disabled]="registerForm.invalid" class="full-width">
+          Registrarme
+        </button>
+      </form>
+    </mat-card-content>
+    
+    <mat-card-actions align="end">
+      <button mat-button routerLink="/login">Ya tengo una cuenta</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

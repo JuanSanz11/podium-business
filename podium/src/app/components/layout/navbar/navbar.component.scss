@@ -1,0 +1,45 @@
+.podium-navbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  
+  .logo-icon {
+    font-size: 28px;
+    height: 28px;
+    width: 28px;
+    color: #ff4081; /* Accent color para que resalte */
+  }
+
+  .brand-name {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 5px;
+  
+  button {
+    font-weight: 500;
+    mat-icon {
+      margin-right: 4px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    display: none; /* En móviles se ocultaría temporalmente para diseño responsivo simple */
+  }
+}

@@ -1,0 +1,40 @@
+<mat-toolbar color="primary" class="podium-navbar">
+  <div class="brand" routerLink="/dashboard" style="cursor: pointer;">
+    <mat-icon class="logo-icon">leaderboard</mat-icon>
+    <span class="brand-name">Podium</span>
+  </div>
+  
+  <span class="spacer"></span>
+
+  <div class="nav-links">
+    <!-- Botón que abre el menú desplegable -->
+    <button mat-flat-button color="accent" [matMenuTriggerFor]="appMenu">
+      <mat-icon>menu</mat-icon>
+      Opciones
+    </button>
+    
+    <!-- Estructura del menú desplegable -->
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item routerLink="/dashboard">
+        <mat-icon color="primary">dashboard</mat-icon>
+        <span>Panel Principal</span>
+      </button>
+      <button mat-menu-item routerLink="/facturas">
+        <mat-icon color="primary">receipt</mat-icon>
+        <span>Facturas</span>
+      </button>
+      <button mat-menu-item routerLink="/gastos">
+        <mat-icon color="warn">shopping_cart</mat-icon>
+        <span>Gastos</span>
+      </button>
+      <button mat-menu-item routerLink="/deudas">
+        <mat-icon color="accent">account_balance</mat-icon>
+        <span>Deudas</span>
+      </button>
+      <button mat-menu-item routerLink="/pedidos">
+        <mat-icon color="warn">local_shipping</mat-icon>
+        <span>Pedidos</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

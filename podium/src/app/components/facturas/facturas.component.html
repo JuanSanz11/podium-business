@@ -1,0 +1,98 @@
+<div class="module-wrapper">
+  <div class="header-action">
+    <button mat-icon-button routerLink="/dashboard" color="primary">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>Gestión de Facturas (Ingresos)</h2>
+  </div>
+
+  <div class="grid-layout">
+    <!-- Formulario para agregar -->
+    <mat-card class="podium-card form-card">
+      <mat-card-header>
+        <mat-card-title>Registrar Nueva Factura</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="facturaForm" (ngSubmit)="onSubmit()">
+          
+          <mat-form-field appearance="outline" fullWidth>
+            <mat-label>Descripción o Concepto</mat-label>
+            <input matInput formControlName="descripcion" placeholder="Ej. Venta de servicio">
+          </mat-form-field>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Monto ($)</mat-label>
+              <input matInput type="number" formControlName="monto">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Categoría</mat-label>
+              <input matInput formControlName="categoria" placeholder="Ej. Freelance">
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline" fullWidth>
+            <mat-label>Fecha de Emisión</mat-label>
+            <input matInput type="date" formControlName="fechaEmision">
+          </mat-form-field>
+
+          <button mat-flat-button color="primary" type="submit" [disabled]="facturaForm.invalid" class="submit-btn">
+            Guardar Factura
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Tabla de registros -->
+    <mat-card class="podium-card table-card">
+      <mat-card-header>
+        <mat-card-title>Historial de Facturas</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table [dataSource]="facturas" class="mat-elevation-z0 full-width-table">
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID. </th>
+            <td mat-cell *matCellDef="let element"> #{{element.id}} </td>
+          </ng-container>
+
+          <!-- Desc Column -->
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+          </ng-container>
+
+          <!-- Cat Column -->
+          <ng-container matColumnDef="categoria">
+            <th mat-header-cell *matHeaderCellDef> Categoría </th>
+            <td mat-cell *matCellDef="let element">
+              <span class="badge">{{element.categoria || 'General'}}</span>
+            </td>
+          </ng-container>
+
+          <!-- Monto Column -->
+          <ng-container matColumnDef="monto">
+            <th mat-header-cell *matHeaderCellDef> Monto </th>
+            <td mat-cell *matCellDef="let element" class="text-success"> 
+              <strong>${{element.monto | number:'1.2-2'}}</strong> 
+            </td>
+          </ng-container>
+
+          <!-- Fecha Column -->
+          <ng-container matColumnDef="fechaEmision">
+            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaEmision}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+        <div *ngIf="facturas.length === 0 && !loading" class="empty-state">
+          No hay facturas registradas.
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

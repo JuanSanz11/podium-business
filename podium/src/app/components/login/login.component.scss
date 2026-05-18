@@ -1,0 +1,135 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  background: radial-gradient(circle at 10% 20%, rgba(63, 81, 181, 0.05) 0%, rgba(255, 255, 255, 1) 90%);
+  padding: 20px;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 420px;
+}
+
+// Branding Creativo
+.login-brand {
+  text-align: center;
+  margin-bottom: 25px;
+
+  .logo-wrapper {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff4081, #3f51b5);
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 10px 20px rgba(63, 81, 181, 0.3);
+    margin-bottom: 15px;
+  }
+
+  .login-logo {
+    font-size: 36px;
+    height: 36px;
+    width: 36px;
+    color: white;
+  }
+
+  .brand-title {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin: 0;
+    background: linear-gradient(45deg, #1a237e, #ff4081);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .brand-subtitle {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+  }
+}
+
+// Tarjeta Glassmorphism
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  border-radius: 20px !important;
+  width: 100%;
+  padding: 25px 20px;
+
+  mat-card-header {
+    margin-bottom: 25px;
+    text-align: center;
+    display: block;
+
+    mat-card-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+    mat-card-subtitle {
+      font-size: 13px;
+      color: #777;
+      margin-top: 5px;
+    }
+  }
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.full-width {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #3f51b5, #1a237e);
+  box-shadow: 0 5px 15px rgba(63, 81, 181, 0.3);
+  margin-top: 15px;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.error-msg {
+  color: #f44336;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+// Animaciones sencillas y bonitas
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

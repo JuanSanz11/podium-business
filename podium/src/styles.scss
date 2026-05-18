@@ -1,0 +1,32 @@
+// Custom Theming for Angular Material
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// Podium Branding Palette
+$podium-primary: mat.define-palette(mat.$indigo-palette, 500);
+$podium-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$podium-warn: mat.define-palette(mat.$red-palette);
+
+$podium-theme: mat.define-light-theme((
+  color: (
+    primary: $podium-primary,
+    accent: $podium-accent,
+    warn: $podium-warn,
+  )
+));
+
+@include mat.all-component-themes($podium-theme);
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f5f5f5;
+}
+
+// Global utilities
+.podium-card {
+  margin: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}

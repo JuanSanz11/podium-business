@@ -1,0 +1,84 @@
+<div class="dashboard-wrapper">
+  <div class="header-banner">
+    <div class="header-content">
+      <h1>Panel de Control</h1>
+      <p>Bienvenido de vuelta. Aquí tienes un resumen del estado de tus finanzas.</p>
+    </div>
+    <button mat-flat-button color="warn" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon> Cerrar Sesión
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="spinner-container">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading" class="dashboard-grid">
+    <!-- Balance Card -->
+    <mat-card class="podium-card glass-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="primary">account_balance_wallet</mat-icon>
+        <mat-card-title>Balance Financiero</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="balance-content">
+        <div class="balance-item">
+          <span class="label">Total Ingresos</span>
+          <span class="value income">${{ reporte?.totalIngresos | number:'1.2-2' }}</span>
+        </div>
+        <div class="balance-item">
+          <span class="label">Total Gastos</span>
+          <span class="value expense">${{ reporte?.totalGastos | number:'1.2-2' }}</span>
+        </div>
+        <div class="balance-item">
+          <span class="label">Total Ahorros</span>
+          <span class="value savings">${{ reporte?.totalAhorro | number:'1.2-2' }}</span>
+        </div>
+        <div class="balance-item">
+          <span class="label">Total Deudas</span>
+          <span class="value debt">${{ totalDeudas | number:'1.2-2' }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Chart Card -->
+    <mat-card class="podium-card glass-card chart-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="accent">pie_chart</mat-icon>
+        <mat-card-title>Distribución</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="chart-container">
+        <canvas baseChart
+          [data]="doughnutChartData"
+          [type]="doughnutChartType">
+        </canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <h2 class="section-title">Módulos de Gestión</h2>
+  <div class="modules-grid">
+    <mat-card class="module-card" routerLink="/facturas" matRipple>
+      <mat-icon class="module-icon" color="primary">receipt</mat-icon>
+      <h3>Gestión de Facturas</h3>
+      <p>Añade y visualiza tus ingresos o ventas.</p>
+    </mat-card>
+
+    <mat-card class="module-card" routerLink="/gastos" matRipple>
+      <mat-icon class="module-icon" color="warn">shopping_cart</mat-icon>
+      <h3>Gestión de Gastos</h3>
+      <p>Registra tus salidas de dinero y ahorros.</p>
+    </mat-card>
+
+    <mat-card class="module-card" routerLink="/deudas" matRipple>
+      <mat-icon class="module-icon" color="accent">account_balance</mat-icon>
+      <h3>Gestión de Deudas</h3>
+      <p>Registra y controla tus deudas y préstamos.</p>
+    </mat-card>
+
+    <mat-card class="module-card" routerLink="/pedidos" matRipple>
+      <mat-icon class="module-icon" color="warn">local_shipping</mat-icon>
+      <h3>Sistema de Pedidos</h3>
+      <p>Administra operaciones asíncronas.</p>
+    </mat-card>
+  </div>
+</div>
